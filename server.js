@@ -4,6 +4,9 @@ const express = require('express');
 // Crea una nueva aplicación Express. Esto es lo que realmente maneja las solicitudes y respuestas.
 const app = express();
 
+// Middleware para servir archivos estáticos
+app.use(express.static('public'));
+
 // Define el puerto en el que se ejecutará tu servidor.
 const port = 3000;
 
@@ -12,6 +15,12 @@ const port = 3000;
 app.get('/', (req, res) => {
   // Envía la respuesta "Hola Mundo!".
   res.send('Servidor de prueba JR');
+});
+
+// Define una ruta GET para el archivo index.html.
+app.get('public/index.html', (req, res) => {
+  // Envía el archivo index.html como respuesta.
+  res.sendFile(__dirname + '/index.html');
 });
 
 // Inicia el servidor en el puerto especificado. Una vez que el servidor está en marcha, se ejecuta la función de devolución de llamada.
