@@ -17,12 +17,6 @@ app.get('/', (req, res) => {
   res.send('Servidor de prueba JR');
 });
 
-// Define una ruta GET para el archivo index.html.
-app.get('public/index.html', (req, res) => {
-  // Envía el archivo index.html como respuesta.
-  res.sendFile(__dirname + '/index.html');
-});
-
 // Inicia el servidor en el puerto especificado. Una vez que el servidor está en marcha, se ejecuta la función de devolución de llamada.
 app.listen(port, () => {
   // Imprime un mensaje en la consola para que sepas que el servidor está en marcha.

@@ -12,7 +12,7 @@
     <p id="userInfo"></p>
 
     <script>
-        fetch('./assets/data/userInfo.json')
+        fetch('./assets/data/users.json')
         .then(response => response.json())
         .then(data => {
         const userInfoElement = document.getElementById('userInfo');
