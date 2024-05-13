@@ -1,11 +1,33 @@
 // Importa el módulo Express. Esto te permite usar la funcionalidad de Express en tu archivo.
 const express = require('express');
+// Importa el módulo Multer. Esto te permite manejar archivos subidos por el usuario.
+const multer  = require('multer');
+// Importa el módulo Path. Esto te permite trabajar con rutas de archivos y directorios.
+
+const path = require('path');
+
+const storage = multer.diskStorage({
+  destination: function(req, file, cb) {
+    cb(null, 'uploads/')
+  },
+  filename: function(req, file, cb) {
+    cb(null, file.fieldname + '-' + Date.now() + path.extname(file.originalname))
+  }
+})
+
+const upload = multer({ storage: storage });
 
 // Crea una nueva aplicación Express. Esto es lo que realmente maneja las solicitudes y respuestas.
 const app = express();
 
 // Middleware para servir archivos estáticos
 app.use(express.static('public'));
+
+app.post('/upload', upload.array('images'), function (req, res, next) {
+  // req.files is array of `images` files
+  // req.body will contain the text fields, if there were any
+  res.json({status: 'OK'});
+});
 
 // Define el puerto en el que se ejecutará tu servidor.
 const port = 3000;
