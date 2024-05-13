@@ -23,7 +23,7 @@ const app = express();
 // Middleware para servir archivos estáticos
 app.use(express.static('public'));
 
-app.post('/upload', upload.array('images'), function (req, res, next) {
+app.post('/upload', upload.array('file'), function (req, res, next) {
   // req.files is array of `images` files
   // req.body will contain the text fields, if there were any
   res.json({status: 'OK'});
